@@ -22,4 +22,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^features/', include('featurerequest.urls', namespace='featurerequest')),
+    url(r'^', include('featurerequest.urls'))
 ]
