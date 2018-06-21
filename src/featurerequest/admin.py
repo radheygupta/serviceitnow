@@ -38,7 +38,7 @@ class FeaturesModelForm(forms.ModelForm):
 
 class FeaturesAdmin(admin.ModelAdmin):
     form = ProductAreaModelForm
-    list_display = ('title', 'client', 'priority', 'product_area', 'target_date')
+    list_display = ('title', 'client', 'priority', 'product_area', 'target_date', 'status')
     search_fields = ['name']
 
 

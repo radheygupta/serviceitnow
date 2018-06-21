@@ -46,7 +46,9 @@ def add_features(request):
         if feature_form.is_valid():
             client = feature_form.cleaned_data['client']
             priority = feature_form.cleaned_data['priority']
-            reorder_priorties(client, priority)
+            status = feature_form.cleaned_data['status']
+            if status == 'Active':  # if status is active then reorder the priorities.
+                reorder_priorties(client, priority)
             feature_form.save()
             messages.success(request, 'The Feature request was succesfully created!.')
             return redirect('/features/')
