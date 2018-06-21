@@ -39,10 +39,13 @@ class Features(models.Model):
         ('D', 'Done'),
         ('C', 'Cancelled'),
     )
+
+    PRIORITY_CHOICES = tuple((i, i) for i in range(0, 16))
+
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=8000)
     client = models.ForeignKey(Clients, on_delete=models.CASCADE)
-    priority = models.IntegerField(default=0)  # 0 means priority is not set
+    priority = models.IntegerField(default=0, choices=PRIORITY_CHOICES)  # 0 means priority is not set
     start_date = models.DateTimeField(auto_now_add=True)
     target_date = models.DateTimeField()
     product_area = models.ForeignKey(ProductArea,  null=True, on_delete=models.SET_NULL)

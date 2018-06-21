@@ -12,7 +12,7 @@ class FeatureForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control', 'max_length': '100'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'client': forms.Select(attrs={'class': 'form-control'}),
-            'priority': forms.TextInput(attrs={'class': 'form-control', 'max_length': '3'}),
+            'priority': forms.Select(attrs={'class': 'form-control', 'max_length': '3'}),
             'target_date': forms. DateTimeInput(format='%Y-%m-%d'),
             'product_area': forms.Select(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
