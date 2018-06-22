@@ -32,6 +32,7 @@ Note:
   1. Clients, Product Areas and users can be added via admin portal.
   2. Feature Request can be also added via admin portal but the priority reordering is not implemented on admin portal. 
   Priority reordering will work on URL http://radhey0105.pythonanywhere.com/features/add/
+  3. Paging is implemented on home page, 10 reature request will be displayed on one page.
   
 Features to be implemented:
   1. At "Create Feature request" page on select of client fetch already assigned priorities of the client via ajax and display to the user.
