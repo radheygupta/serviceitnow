@@ -1,6 +1,7 @@
-# serviceitnow
+# serviceITnow
 
 URL: http://radhey0105.pythonanywhere.com/
+
 Admin Portal: http://radhey0105.pythonanywhere.com/admin/
 
 A web application that allows the user to create "feature requests".
