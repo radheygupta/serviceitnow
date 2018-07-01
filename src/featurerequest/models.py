@@ -76,8 +76,13 @@ class Features(models.Model):
             if self.status == 'A':
                     max_priority = Features.objects.filter(client=self.client, status='A').aggregate(
                         Max('priority'))['priority__max']
-                    if max_priority is not None and self.priority > max_priority:
+                    if self.priority ==0:
+                        pass
+                    elif max_priority is not None and self.priority > max_priority:
                         self.priority = max_priority + 1
+                    else:
+                        Features.objects.filter(client=self.client, priority__gte=self.priority,
+                                                ).exclude(priority=0).update(priority=F('priority') + 1)
             else:
                 self.priority = 0
         else:  # updating feature request
