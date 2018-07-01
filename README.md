@@ -26,7 +26,7 @@ Below are the Fields of a "feature request":
   Priority 0 means no priority is set yet.
   5. Target Date: The date that the client is hoping to have the feature.
   6. Product Area: A selection list of product areas (like 'Policies', 'Billing', 'Claims', 'Reports')
-  Status: Current status of the request.
+  7. Status: Current status of the request.
 
 DB Schemas:
   1. features: Stores feature requests. Have Many to one relationship with "clients" and "productarea"
