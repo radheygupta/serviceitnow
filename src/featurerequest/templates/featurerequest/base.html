@@ -6,6 +6,7 @@
         <title>serviceITnow</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static "featurerequest/css/custom.css" %}"/>
@@ -23,11 +24,7 @@
                     <a class="nav-link" href="/">Feature Request<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            <!--<form class="form-inline my-2 my-md-0 mr-5">-->
-                <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
-                <!--<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>-->
-            <!--</form>-->
-            <ul class="navbar-nav my-2 my-md-0">
+             <ul class="navbar-nav my-2 my-md-0">
                 <li class="nav-item">
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
@@ -61,13 +58,13 @@
                         </ul>
                     {% endif %}
                 </div>
-                <div class="col-md-8 col-xs-12">
+                <div class="col-md-12 col-xs-12">
                     {% block mainContent %}Site Content {% endblock mainContent %}
                 </div>
-                <div class="col-md-4 col-xs-12">
-                    <div class="sidebar section" id="sidebar">
-                    </div>
-                </div>
+                <!--<div class="col-md-4 col-xs-12">-->
+                    <!--<div class="sidebar section" id="sidebar">-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
         <footer class="footer" style="background-color: #bebebe;">

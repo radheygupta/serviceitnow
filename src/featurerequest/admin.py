@@ -32,17 +32,23 @@ class FeaturesModelForm(forms.ModelForm):
         model = ProductArea
         fields = '__all__'
         widgets = {
-            'description': forms.Textarea(attrs={'cols': 80, 'rows': 20}),
+            'description': forms.Textarea(attrs={'cols': 80, 'rows': 10}),
+            'priority': forms.NumberInput(attrs={'max_length': '3'}),
         }
 
 
 class FeaturesAdmin(admin.ModelAdmin):
-    form = ProductAreaModelForm
+    form = FeaturesModelForm
     list_display = ('title', 'client', 'priority', 'product_area', 'target_date', 'status')
     search_fields = ['name']
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # This is the case when obj is already created i.e. it's an edit
+            return ['client']
+        else:
+            return []
 
-# admin.site.register(Clients, ClientsAdmin)
+
 admin.site.register(Clients)
 admin.site.register(ProductArea, ProductAreaAdmin)
 admin.site.register(Features, FeaturesAdmin)

@@ -5,11 +5,16 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import LoginForm, FeatureForm
 from .models import Features
-from .utils import reorder_priorties
 
 
 @login_required
 def index(request, page=1):
+    """
+    It displays list of feature requests. 10 records will be displayed per page in descending order of target_date.
+    :param request: HttpRequest object provided by django engine.
+    :param page: the page number that needs to be displayed.
+
+    """
     latest_feature_list = Features.objects.filter().order_by('-target_date')
     paginator = Paginator(latest_feature_list, 10)
 
@@ -41,41 +46,46 @@ def index(request, page=1):
 
 @login_required
 def add_features(request):
+    """
+    Creates Feature Request on POST.
+    Blank form will be rendered on GET.
+
+    """
     feature_form = FeatureForm(request.POST or None)
     if request.method == 'POST':
         if feature_form.is_valid():
-            client = feature_form.cleaned_data['client']
-            priority = feature_form.cleaned_data['priority']
-            status = feature_form.cleaned_data['status']
-            if status == 'Active':  # if status is active then reorder the priorities.
-                reorder_priorties(client, priority)
             feature_form.save()
-            messages.success(request, 'The Feature request was succesfully created!.')
+            messages.success(request, 'The Feature request was successfully created!.')
             return redirect('/features/')
         else:
             messages.error(request, 'Please correct the error below.')
+            return render(request, 'featurerequest/addfeatures.html', {'feature_form': feature_form})
     else:
         feature_form = FeatureForm()
         return render(request, 'featurerequest/addfeatures.html', {'feature_form': feature_form})
 
 
 def userlogin(request):
+    """
+    Blank login form will be rendered on GET
+    User will be logged in and redirected to Features page on providing valid credentials.
+
+    """
     form = LoginForm(request.POST or None)
     if request.method == 'POST':
-        # form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            # print("{}:{}".format(username, password))
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                # print("User logged in : {}".format(user.username))
                 return redirect('/features/')
-    # print("User login failed")
     return render(request, 'featurerequest/login.html', {'login_form': form})
 
 
 def userlogout(request):
+    """
+    User will be logged out.
+    """
     logout(request)
     return redirect('/features/')
